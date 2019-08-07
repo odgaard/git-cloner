@@ -10,11 +10,11 @@ if count < 2 {
     var folderList = URL.components(separatedBy: "/")[2...]
     let gitName = folderList.removeLast()
     
-    var folderCmd = defaultPath
+    var targetFolder = defaultPath
     for folder in folderList {
-        folderCmd += (folder + "/")
+        targetFolder += (folder + "/")
     }
-    run(command: "mkdir", arguments: ["-p", folderCmd])
-    run(command: "git", arguments: ["clone"] + CommandLine.arguments[1...] + [folderCmd + gitName])
+    run(command: "mkdir", arguments: ["-p", targetFolder])
+    run(command: "git", arguments: ["clone"] + CommandLine.arguments[1...] + [targetFolder + gitName])
 }
 
