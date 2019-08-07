@@ -1,8 +1,8 @@
 let defaultPath = "~/Programming/"
 
 let count = CommandLine.arguments.count
-if count != 2 {
-    print("Usage: git-cloner URL")
+if count < 2 {
+    print("Usage: git-cloner URL [Options]")
 } else {
     let URL = CommandLine.arguments[1]
 
@@ -15,6 +15,6 @@ if count != 2 {
         folderCmd += (folder + "/")
     }
     run(command: "mkdir", arguments: ["-p", folderCmd])
-    run(command: "git", arguments: ["clone", URL, folderCmd + gitName])
+    run(command: "git", arguments: ["clone"] + CommandLine.arguments[1...] + [folderCmd + gitName])
 }
 
